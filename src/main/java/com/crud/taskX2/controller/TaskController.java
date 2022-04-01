@@ -1,10 +1,14 @@
 package com.crud.taskX2.controller;
 
 import com.crud.taskX2.domain.TaskDto;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@RestController
+@RequestMapping("/v1/task")
 public class TaskController {
     public List<TaskDto> getTasks() {
         return new ArrayList<>();
