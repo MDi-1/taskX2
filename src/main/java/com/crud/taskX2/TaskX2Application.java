@@ -1,6 +1,5 @@
 package com.crud.taskX2;
 
-import com.crud.taskX2.domain.TaskDto;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
