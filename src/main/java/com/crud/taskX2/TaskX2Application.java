@@ -10,3 +10,6 @@ public class TaskX2Application {
 		SpringApplication.run(TaskX2Application.class, args);
 	}
 }
+
+//todo: install environment vars on dell;
+//todo: copy frontend mamp dir to dell;
