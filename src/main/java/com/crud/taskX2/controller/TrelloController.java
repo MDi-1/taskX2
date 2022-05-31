@@ -1,11 +1,12 @@
 package com.crud.taskX2.controller;
 
+import com.crud.taskX2.domain.CreatedTrelloCard;
 import com.crud.taskX2.domain.TrelloBoardDto;
 import com.crud.taskX2.client.TrelloClient;
+import com.crud.taskX2.domain.TrelloCardDto;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @RestController
@@ -13,11 +14,19 @@ import java.util.List;
 @RequiredArgsConstructor
 public class TrelloController {
 
-    private final TrelloClient trelloClient;
+    private final TrelloClient client;
 
     @GetMapping("getTrelloBoards")
     public void getTrelloBoards() {
-        List<TrelloBoardDto> tBoards = trelloClient.getTrelloBoards();
-        tBoards.forEach(trelloBoardDto -> System.out.println(trelloBoardDto.getId() + " " + trelloBoardDto.getName()));
+        List<TrelloBoardDto> trelloBoards = client.getTrelloBoards();
+        trelloBoards.forEach(board -> {
+            System.out.println(board.getId() + " - " + board.getName());
+            System.out.println("]] This board contains lists: [[");
+            board.getLists().forEach(list -> System.out.println(list.getName()+" - "+list.getId()+" - "+list.isClosed()));
+        });
+    }
+    @PostMapping("createTrelloCard")
+    public CreatedTrelloCard createTrelloCard(@RequestBody TrelloCardDto dto) {
+        return client.createNewCard(dto);
     }
 }
