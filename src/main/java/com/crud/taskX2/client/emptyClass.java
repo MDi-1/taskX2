@@ -2,6 +2,6 @@ package com.crud.taskX2.client;
 
 public class emptyClass {
     void function() {
-        // class expanded to empty function
+        System.out.println("class expanded to empty function with 'sout'.");
     }
 }
