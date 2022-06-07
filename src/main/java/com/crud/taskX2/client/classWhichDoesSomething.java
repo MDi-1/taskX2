@@ -1,5 +1,7 @@
 package com.crud.taskX2.client;
 
 public class classWhichDoesSomething {
-    // this is an empty class that does nothing
+    void something() {
+        System.out.println("Here was the comment: 'this is an empty class that does nothing' ");
+    }
 }

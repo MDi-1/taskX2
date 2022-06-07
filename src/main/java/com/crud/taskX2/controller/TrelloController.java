@@ -6,14 +6,12 @@ import com.crud.taskX2.client.TrelloClient;
 import com.crud.taskX2.domain.TrelloCardDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
 @RequestMapping("/v1/trello")
 @RequiredArgsConstructor
 public class TrelloController {
-
     private final TrelloClient client;
 
     @GetMapping("getTrelloBoards")
