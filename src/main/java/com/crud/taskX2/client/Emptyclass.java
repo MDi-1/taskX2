@@ -4,4 +4,6 @@ public class Emptyclass {
     void function() {
         System.out.println("comment was here");
     }
+
+    // further class expanding
 }
