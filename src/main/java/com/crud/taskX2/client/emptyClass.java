@@ -1,5 +1,7 @@
 package com.crud.taskX2.client;
 
 public class emptyClass {
-    // this is change number 1
+    void function() {
+        // class expanded to empty function
+    }
 }
