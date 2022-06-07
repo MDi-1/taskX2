@@ -1,5 +1,9 @@
 package com.crud.taskX2.client;
 
 public class Template {
-    //this one will be template for something
+    private String x;
+
+    public Template(String x) {
+        this.x = x;
+    }
 }
