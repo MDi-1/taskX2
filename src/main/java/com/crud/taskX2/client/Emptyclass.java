@@ -1,9 +1,8 @@
 package com.crud.taskX2.client;
 
 public class Emptyclass {
-    void function() {
-        System.out.println("comment was here");
+    void function (int x) {
+        int y = x * 5;
+        System.out.println(y);
     }
-    
-    void f2 () { System.out.println("-erased-"); }
 }
