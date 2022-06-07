@@ -1,15 +1,12 @@
 package com.crud.taskX2.controller;
 
-import com.crud.taskX2.domain.Task;
 import com.crud.taskX2.domain.TaskDto;
 import com.crud.taskX2.mapper.TaskMapper;
 import com.crud.taskX2.service.DbService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @CrossOrigin(origins = "*")
@@ -19,19 +16,16 @@ import java.util.List;
 public class TaskController {
 
     private final DbService service;
-    private final TaskMapper taskMapper;
+    private final TaskMapper mapper;
 
     @RequestMapping(method = RequestMethod.GET, value = "getTasks")
     public List<TaskDto> getTasks() {
-        List<Task> tasks = service.getAllTasks();
-        return taskMapper.mapToTaskDtoList(tasks);
+        return mapper.mapToTaskDtoList(service.getAllTasks());
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "getTask")
     public TaskDto getTask(@RequestParam Long taskId) throws TaskNotFoundException {
-        return taskMapper.mapToTaskDto(
-                service.getTask(taskId).orElseThrow(TaskNotFoundException::new)
-        );
+        return mapper.mapToTaskDto(service.getTask(taskId).orElseThrow(TaskNotFoundException::new));
     }
 
     @RequestMapping(method = RequestMethod.DELETE, value = "deleteTask")
@@ -41,14 +35,11 @@ public class TaskController {
 
     @RequestMapping(method = RequestMethod.PUT, value = "updateTask")
     public TaskDto updateTask(@RequestBody TaskDto taskDto) {
-        Task task = taskMapper.mapToTask(taskDto);
-        Task savedTask = service.saveTask(task);
-        return taskMapper.mapToTaskDto(savedTask);
+        return mapper.mapToTaskDto(service.saveTask(mapper.mapToTask(taskDto)));
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "createTask", consumes = MediaType.APPLICATION_JSON_VALUE)
     public void createTask(@RequestBody TaskDto taskDto) {
-        Task task = taskMapper.mapToTask(taskDto);
-        service.saveTask(task);
+        service.saveTask(mapper.mapToTask(taskDto));
     }
 }
